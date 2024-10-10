@@ -10,6 +10,7 @@ import {
 import { Github, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
+import SearchBar from './SearchBar';
 
 export default function Navbar() {
   const router = useRouter();
@@ -35,10 +36,6 @@ export default function Navbar() {
       </nav>
     </div>
   );
-}
-
-function SearchBar() {
-  return <div>SearchBar</div>;
 }
 
 function ModeToggle() {
