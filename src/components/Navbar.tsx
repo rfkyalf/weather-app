@@ -11,6 +11,7 @@ import { Github, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import SearchBar from './SearchBar';
+import { useGlobalContext } from '@/context/globalContext';
 
 export default function Navbar() {
   const router = useRouter();
@@ -18,6 +19,10 @@ export default function Navbar() {
   function pushToSourceCode() {
     router.push('/source-code');
   }
+
+  const { state } = useGlobalContext();
+
+  console.log(state);
 
   return (
     <div className="w-full py-4 flex items-center justify-between">
