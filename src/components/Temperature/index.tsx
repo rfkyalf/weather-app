@@ -3,13 +3,10 @@
 import { getWeather } from '@/lib/actions';
 import { WeatherIcon } from '@/lib/icons';
 import { celvinToCelsius, convertToLocalTime, toTitleCase } from '@/lib/utils';
+import { useLocationStore } from '@/stores/useLocationStore';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { FaCloud } from 'react-icons/fa6';
-
 export default function TemperatureSection() {
-  const [lat, setLat] = useState(-7.3262484);
-  const [lon, setLon] = useState(108.2201154);
+  const { lat, lon } = useLocationStore();
 
   const {
     data: weatherList,

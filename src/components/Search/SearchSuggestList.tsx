@@ -11,11 +11,13 @@ export default function SearchSuggestList({
   isLoading,
   error,
   LocationList,
+  onSelectLocation,
 }: {
   query: string;
   isLoading: boolean;
   error: Error | null;
   LocationList: Location[];
+  onSelectLocation: (lat: number, lon: number) => void;
 }) {
   return (
     <>
@@ -35,19 +37,19 @@ export default function SearchSuggestList({
                 No results found
               </span>
             ) : (
-              LocationList?.map(({ name, state, country }: Location, index) => (
-                <h3
-                  key={index}
-                  className="text-[1rem] text-neutral-700 hover:bg-neutral-50 px-2 py-1 rounded-md cursor-pointer"
-                  onClick={() => {
-                    console.log(name);
-                  }}
-                >
-                  {name}
-                  {state ? `, ${state}` : ''}
-                  {country ? `, ${country}` : ''}
-                </h3>
-              ))
+              LocationList?.map(
+                ({ name, state, country, lat, lon }: Location, index) => (
+                  <h3
+                    key={index}
+                    className="text-[1rem] text-neutral-700 hover:bg-neutral-50 px-2 py-1 rounded-md cursor-pointer"
+                    onClick={() => onSelectLocation(lat, lon)}
+                  >
+                    {name}
+                    {state ? `, ${state}` : ''}
+                    {country ? `, ${country}` : ''}
+                  </h3>
+                )
+              )
             )}
           </div>
         </div>
