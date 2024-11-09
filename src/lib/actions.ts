@@ -19,3 +19,16 @@ export const getLocation = async (query: string) => {
     throw error;
   }
 };
+
+export const getWeather = async (lat: number, lon: number) => {
+  try {
+    const res = await axiosInstance.get(
+      `/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+    );
+
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
