@@ -11,9 +11,7 @@ export const celvinToCelsius = (celcius: number) => {
   return Math.round(celcius - 273.15);
 };
 
-export const toTitleCase = (str: string | undefined | null) => {
-  if (!str) return ''; // Mengembalikan string kosong jika str tidak terdefinisi
-
+export const toTitleCase = (str: string) => {
   return str
     .toLowerCase()
     .split(' ')

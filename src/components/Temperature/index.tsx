@@ -1,6 +1,7 @@
 'use client';
 
 import { getWeather } from '@/lib/actions';
+import { WeatherIcon } from '@/lib/icons';
 import { celvinToCelsius, convertToLocalTime, toTitleCase } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -10,10 +11,28 @@ export default function TemperatureSection() {
   const [lat, setLat] = useState(-7.3262484);
   const [lon, setLon] = useState(108.2201154);
 
-  const { data: weatherList } = useQuery({
+  const {
+    data: weatherList,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['weather', lat, lon],
     queryFn: () => getWeather(lat, lon),
   });
+
+  if (isLoading)
+    return (
+      <div className="h-full w-[280px] rounded-lg flex justify-center items-center bg-neutral-200 text-[2rem] text-neutral-700 font-bold animate-pulse">
+        Loading...
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="h-full w-[280px] rounded-lg flex justify-center items-center bg-neutral-200 text-[1rem] text-red-500 font-bold">
+        {error.message}
+      </div>
+    );
 
   return (
     <div className="h-full w-[280px] bg-neutral-200 rounded-lg flex flex-col justify-center px-4">
@@ -26,7 +45,10 @@ export default function TemperatureSection() {
         </span>
       </div>
       <div className="flex items-center justify-center gap-x-6 my-5">
-        <FaCloud className="size-28 text-neutral-700" />
+        <WeatherIcon
+          code={weatherList?.weather[0].icon}
+          iconStyle="size-28 text-neutral-700"
+        />
         <div>
           <h1 className="text-[3rem] font-bold text-neutral-700 mb-[-10px]">
             {celvinToCelsius(weatherList?.main.temp)}
