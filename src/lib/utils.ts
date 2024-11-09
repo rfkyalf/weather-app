@@ -4,7 +4,7 @@ export const convertToLocalTime = (timestamp: number, timezone: number) => {
   return moment
     .unix(timestamp)
     .utcOffset(timezone / 60)
-    .format('h:mm A');
+    .format('hh:mm A');
 };
 
 export const celvinToCelsius = (celcius: number) => {
