@@ -1,6 +1,7 @@
-import MapSection from '@/components/Map';
+import MapSection from '@/components/MapSection';
 import Search from '@/components/Search';
-import TemperatureSection from '@/components/Temperature';
+import SunsetWindHumidityPressureSection from '@/components/SunsetWindHumidityPressure';
+import TemperatureSection from '@/components/TemperatureSection';
 
 export default function HomePage() {
   return (
@@ -10,7 +11,7 @@ export default function HomePage() {
         <div className="h-[320px] flex gap-x-2">
           <TemperatureSection />
           <MapSection />
-          <div></div>
+          <SunsetWindHumidityPressureSection />
         </div>
       </div>
     </main>

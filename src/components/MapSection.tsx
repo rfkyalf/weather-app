@@ -36,7 +36,7 @@ export default function MapSection() {
       center={position}
       zoom={13}
       scrollWheelZoom={false}
-      className="h-full w-[50%] rounded-lg overflow-hidden"
+      className="h-full w-[40%] rounded-lg overflow-hidden"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
