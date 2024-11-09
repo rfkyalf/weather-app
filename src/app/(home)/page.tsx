@@ -10,6 +10,7 @@ export default function HomePage() {
         <div className="h-[320px] flex gap-x-2">
           <TemperatureSection />
           <MapSection />
+          <div></div>
         </div>
       </div>
     </main>

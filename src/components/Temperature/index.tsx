@@ -19,20 +19,20 @@ export default function TemperatureSection() {
 
   if (isLoading)
     return (
-      <div className="h-full w-[320px] rounded-lg flex justify-center items-center bg-neutral-200 text-[2rem] text-neutral-700 font-bold animate-pulse">
+      <div className="h-full w-[30%] rounded-lg flex justify-center items-center bg-neutral-200 text-[2rem] text-neutral-700 font-bold animate-pulse">
         Loading...
       </div>
     );
 
   if (error)
     return (
-      <div className="h-full w-[320px] rounded-lg flex justify-center items-center bg-neutral-200 text-[1rem] text-red-500 font-bold">
+      <div className="h-full w-[30%] rounded-lg flex justify-center items-center bg-neutral-200 text-[1rem] text-red-500 font-bold">
         {error.message}
       </div>
     );
 
   return (
-    <div className="h-full w-[320px] bg-neutral-200 rounded-lg flex flex-col justify-center px-4">
+    <div className="h-full w-[30%] bg-neutral-200 rounded-lg flex flex-col justify-center px-4">
       <div>
         <h2 className="text-[1.2rem] font-medium text-neutral-700">
           {weatherList?.name}
@@ -76,6 +76,12 @@ export default function TemperatureSection() {
           <span className="text-[0.9rem] text-neutral-600">
             {celvinToCelsius(weatherList?.main.feels_like)}
             <span className="align-super">°c</span>
+          </span>
+        </div>
+        <div>
+          <h3 className="text-neutral-700 text-[1rem]">Humidity</h3>
+          <span className="text-[0.9rem] text-neutral-600">
+            {weatherList?.main.humidity}%
           </span>
         </div>
       </div>
