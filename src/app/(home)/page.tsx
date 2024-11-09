@@ -1,20 +1,10 @@
-'use client';
-
-import { getLocation } from '@/lib/actions';
-import { useQuery } from '@tanstack/react-query';
+import Search from '@/components/Search';
 
 export default function HomePage() {
-  const { data: locationList } = useQuery({
-    queryKey: ['location'],
-    queryFn: () => getLocation('London'),
-  });
-
   return (
-    <main>
-      <div>
-        {locationList?.map(({ name, lat }: { name: string; lat: number }) => (
-          <div key={lat + name}>{name}</div>
-        ))}
+    <main className="bg-neutral-50 relative min-h-screen">
+      <div className="w-[1200px] mx-auto">
+        <Search />
       </div>
     </main>
   );
