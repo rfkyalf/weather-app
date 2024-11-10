@@ -10,7 +10,8 @@ import moment from 'moment';
 interface DayForecast {
   dt_txt: string;
   main: {
-    temp: number;
+    temp_min: number;
+    temp_max: number;
   };
   weather: {
     main: string;
@@ -26,8 +27,30 @@ export default function DayForecastSection() {
     queryFn: () => getForecast(lat, lon),
   });
 
-  const dayForecastList: DayForecast[] | undefined = forecastData?.list
-    .filter((item: DayForecast) => item.dt_txt.includes('12:00:00'))
+  const dayForecastList = forecastData?.list
+    .reduce((acc: DayForecast[], item: DayForecast) => {
+      const date = moment(item.dt_txt).format('YYYY-MM-DD');
+
+      const existing = acc.find((day) => day.dt_txt === date);
+
+      if (existing) {
+        existing.main.temp_min = Math.min(
+          existing.main.temp_min,
+          item.main.temp_min
+        );
+        existing.main.temp_max = Math.max(
+          existing.main.temp_max,
+          item.main.temp_max
+        );
+      } else {
+        acc.push({
+          dt_txt: date,
+          main: { temp_min: item.main.temp_min, temp_max: item.main.temp_max },
+          weather: item.weather,
+        });
+      }
+      return acc;
+    }, [])
     .slice(0, 5);
 
   return (
@@ -38,7 +61,11 @@ export default function DayForecastSection() {
       <div className="flex flex-col mt-8 gap-y-5">
         {dayForecastList?.map(
           (
-            { dt_txt, main: { temp }, weather: [{ main, icon }] }: DayForecast,
+            {
+              dt_txt,
+              main: { temp_max, temp_min },
+              weather: [{ main, icon }],
+            }: DayForecast,
             index: number
           ) => (
             <div
@@ -53,7 +80,12 @@ export default function DayForecastSection() {
                 <span>{main}</span>
               </span>
               <span className="text-[1.2rem] text-neutral-700 font-medium">
-                {celvinToCelsius(temp)}
+                {celvinToCelsius(temp_min)}
+                <span className="text-[0.8rem] align-super font-normal">
+                  °c
+                </span>
+                {' - '}
+                {celvinToCelsius(temp_max)}
                 <span className="text-[0.8rem] align-super font-normal">
                   °c
                 </span>
