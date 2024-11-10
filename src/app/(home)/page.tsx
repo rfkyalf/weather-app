@@ -1,3 +1,4 @@
+import AirPollutionSection from '@/components/AirPollution';
 import DayForecastSection from '@/components/DayForecast';
 import { Map } from '@/components/Map';
 import PopularCitiesSection from '@/components/PopularCitiesSection';
@@ -21,7 +22,7 @@ export default async function HomePage() {
           <section className="h-full w-[40%] rounded-lg flex flex-col justify-center gap-y-2">
             <div className="h-1/3 w-full bg-neutral-200 rounded-lg"></div>
             <div className="h-1/3 w-full bg-neutral-200 rounded-lg"></div>
-            <div className="h-1/3 w-full bg-neutral-200 rounded-lg"></div>
+            <AirPollutionSection />
           </section>
           <section className="h-full w-[30%] rounded-lg flex flex-col justify-center gap-y-2">
             <PopulationSection />
