@@ -20,7 +20,11 @@ export function FlyToLocation({ lat, lon }: { lat: number; lon: number }) {
 
   useEffect(() => {
     const position = new LatLng(lat, lon);
-    map.flyTo(position, map.getZoom());
+    map.flyTo(position, map.getZoom(), {
+      animate: true,
+      duration: 1,
+      easeLinearity: 1,
+    });
   }, [lat, lon, map]);
 
   return null;
