@@ -1,13 +1,12 @@
 'use client';
 
 import { useLocationStore } from '@/stores/useLocationStore';
-import { LatLng } from 'leaflet';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import { useEffect } from 'react';
-import L from 'leaflet';
+import L, { LatLng } from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/leaflet.css';
+import { useEffect } from 'react';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -16,7 +15,7 @@ const DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-function FlyToLocation({ lat, lon }: { lat: number; lon: number }) {
+export function FlyToLocation({ lat, lon }: { lat: number; lon: number }) {
   const map = useMap();
 
   useEffect(() => {
