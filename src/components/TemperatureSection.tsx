@@ -2,11 +2,16 @@
 
 import { getWeather } from '@/lib/actions';
 import { WeatherIcon } from '@/lib/icons';
-import { celvinToCelsius, convertToLocalTime, toTitleCase } from '@/lib/utils';
+import {
+  celvinToCelsius,
+  convertToLocalDate,
+  convertToLocalTime,
+  toTitleCase,
+} from '@/lib/utils';
 import { useLocationStore } from '@/stores/useLocationStore';
 import { useQuery } from '@tanstack/react-query';
-import Loading from './Loading';
 import Error from './Error';
+import Loading from './Loading';
 export default function TemperatureSection() {
   const { lat, lon } = useLocationStore();
 
@@ -26,9 +31,14 @@ export default function TemperatureSection() {
   return (
     <div className="h-full w-[30%] bg-neutral-200 rounded-lg flex flex-col justify-center px-4">
       <div>
-        <h2 className="text-[1.2rem] font-medium text-neutral-700">
-          {weatherList?.name}
-        </h2>
+        <div className="w-full flex items-center justify-between">
+          <h2 className="text-[1.2rem] font-medium text-neutral-700">
+            {weatherList?.name}
+          </h2>
+          <h2 className="text-[1rem] text-neutral-700">
+            {convertToLocalDate(weatherList?.dt, weatherList?.timezone)}
+          </h2>
+        </div>
         <span className="text-[0.9rem] text-neutral-600">
           {convertToLocalTime(weatherList?.dt, weatherList?.timezone)}
         </span>
