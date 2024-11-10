@@ -5,6 +5,8 @@ import { WeatherIcon } from '@/lib/icons';
 import { celvinToCelsius, convertToLocalTime, toTitleCase } from '@/lib/utils';
 import { useLocationStore } from '@/stores/useLocationStore';
 import { useQuery } from '@tanstack/react-query';
+import Loading from './Loading';
+import Error from './Error';
 export default function TemperatureSection() {
   const { lat, lon } = useLocationStore();
 
@@ -17,19 +19,9 @@ export default function TemperatureSection() {
     queryFn: () => getWeather(lat, lon),
   });
 
-  if (isLoading)
-    return (
-      <div className="h-full w-[30%] rounded-lg flex justify-center items-center bg-neutral-200 text-[2rem] text-neutral-700 font-bold animate-pulse">
-        Loading...
-      </div>
-    );
+  if (isLoading) return <Loading style="h-full w-[30%]" />;
 
-  if (error)
-    return (
-      <div className="h-full w-[30%] rounded-lg flex justify-center items-center bg-neutral-200 text-[1rem] text-red-500 font-bold">
-        {error.message}
-      </div>
-    );
+  if (error) return <Error error={error} style="h-full w-[30%]" />;
 
   return (
     <div className="h-full w-[30%] bg-neutral-200 rounded-lg flex flex-col justify-center px-4">

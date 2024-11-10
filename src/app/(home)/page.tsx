@@ -3,7 +3,7 @@ import Search from '@/components/Search';
 import SunsetWindHumidityPressureSection from '@/components/SunsetWindHumidityPressure';
 import TemperatureSection from '@/components/TemperatureSection';
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <main className="bg-neutral-50 relative min-h-screen">
       <div className="w-[1200px] mx-auto">
