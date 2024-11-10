@@ -1,5 +1,6 @@
 import DayForecastSection from '@/components/DayForecast';
 import { Map } from '@/components/Map';
+import PopularCitiesSection from '@/components/PopularCitiesSection';
 import PopulationSection from '@/components/PopulationSection';
 import Search from '@/components/Search';
 import SunsetWindHumidityPressureSection from '@/components/SunsetWindHumidityPressure';
@@ -24,7 +25,7 @@ export default async function HomePage() {
           </section>
           <section className="h-full w-[30%] rounded-lg flex flex-col justify-center gap-y-2">
             <PopulationSection />
-            <div className="h-2/3 w-full bg-neutral-200 rounded-lg"></div>
+            <PopularCitiesSection />
           </section>
         </div>
       </div>

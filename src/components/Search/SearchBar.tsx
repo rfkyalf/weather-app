@@ -7,7 +7,9 @@ export default function SearchBar({
 }) {
   const handleSearch = useDebouncedCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setQuery(e.target.value);
+      const input = e.target.value;
+      const trimmedInput = input.replace(/^\s+/, '');
+      setQuery(trimmedInput);
     },
     500
   );

@@ -1,7 +1,5 @@
 interface Location {
-  name: string;
-  state: string;
-  country: string;
+  display_name: string;
   lat: number;
   lon: number;
 }
@@ -38,15 +36,13 @@ export default function SearchSuggestList({
               </span>
             ) : (
               LocationList?.map(
-                ({ name, state, country, lat, lon }: Location, index) => (
+                ({ display_name, lat, lon }: Location, index) => (
                   <h3
                     key={index}
                     className="text-[1rem] text-neutral-700 hover:bg-neutral-50 px-2 py-1 rounded-md cursor-pointer"
                     onClick={() => onSelectLocation(lat, lon)}
                   >
-                    {name}
-                    {state ? `, ${state}` : ''}
-                    {country ? `, ${country}` : ''}
+                    {display_name}
                   </h3>
                 )
               )

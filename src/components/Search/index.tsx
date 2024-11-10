@@ -1,11 +1,11 @@
 'use client';
 
-import { getLocation } from '@/lib/actions';
+import { getSearchOSM } from '@/lib/actions';
+import { useLocationStore } from '@/stores/useLocationStore';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import SearchBar from './SearchBar';
 import SearchSuggestList from './SearchSuggestList';
-import { useLocationStore } from '@/stores/useLocationStore';
 
 export default function Search() {
   const [query, setQuery] = useState('');
@@ -17,7 +17,7 @@ export default function Search() {
     error,
   } = useQuery({
     queryKey: ['location', query],
-    queryFn: () => getLocation(query),
+    queryFn: () => getSearchOSM(query),
   });
 
   return (
