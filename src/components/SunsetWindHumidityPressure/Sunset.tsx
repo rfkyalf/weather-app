@@ -17,14 +17,20 @@ export default function Sunset({
   const sunsetTime = convertToLocalTime1Arg(otherInfoWeatherList?.sys.sunset);
   const sunriseTime = convertToLocalTime1Arg(otherInfoWeatherList?.sys.sunrise);
 
-  const isAfterSunset = currentTime > sunsetTime;
-  const displayIcon = isAfterSunset ? (
-    <BsFillSunriseFill className="size-5 text-neutral-700" />
-  ) : (
+  // Ambil jam dari string waktu (format "HH:mm")
+  const currentHour = parseInt(currentTime.split(':')[0]);
+  const sunriseHour = parseInt(sunriseTime.split(':')[0]);
+  const sunsetHour = parseInt(sunsetTime.split(':')[0]);
+
+  const isAfterSunrise = currentHour >= sunriseHour && currentHour < sunsetHour;
+
+  const displayIcon = isAfterSunrise ? (
     <BsFillSunsetFill className="size-5 text-neutral-700" />
+  ) : (
+    <BsFillSunriseFill className="size-5 text-neutral-700" />
   );
-  const displayTitle = isAfterSunset ? 'Sunrise' : 'Sunset';
-  const displayTime = isAfterSunset ? sunriseTime : sunsetTime;
+  const displayTitle = isAfterSunrise ? 'Sunset' : 'Sunrise';
+  const displayTime = isAfterSunrise ? sunsetTime : sunriseTime;
 
   return (
     <div className="h-full w-1/2 bg-neutral-200 rounded-lg p-4 flex flex-col justify-between">
@@ -38,7 +44,7 @@ export default function Sunset({
         </span>
       </div>
       <span className="text-[0.9rem] text-neutral-700">
-        {isAfterSunset ? `Sunset: ${sunsetTime}` : `Sunrise: ${sunriseTime}`}
+        {isAfterSunrise ? `Sunrise: ${sunriseTime}` : `Sunset: ${sunsetTime}`}
       </span>
     </div>
   );
