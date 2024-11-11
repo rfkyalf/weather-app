@@ -43,3 +43,7 @@ export const populationFormat = (number: number) => {
     return number;
   }
 };
+
+export const getHours = (timestamp: string) => {
+  return moment(timestamp).format('HH:mm');
+};

@@ -6,6 +6,8 @@ import { celvinToCelsius } from '@/lib/utils';
 import { useLocationStore } from '@/stores/useLocationStore';
 import { useQuery } from '@tanstack/react-query';
 import moment from 'moment';
+import Loading from '../Loading';
+import Error from '../Error';
 
 interface DayForecast {
   dt_txt: string;
@@ -22,7 +24,11 @@ interface DayForecast {
 export default function DayForecastSection() {
   const { lat, lon } = useLocationStore();
 
-  const { data: forecastData } = useQuery({
+  const {
+    data: forecastData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['dayForecast', lat, lon],
     queryFn: () => getForecast(lat, lon),
   });
@@ -52,6 +58,10 @@ export default function DayForecastSection() {
       return acc;
     }, [])
     .slice(0, 5);
+
+  if (isLoading) return <Loading style="h-full w-[30%]" />;
+
+  if (error) return <Error error={error} style="h-full w-[30%]" />;
 
   return (
     <section className="h-full w-[30%] bg-neutral-200 rounded-lg flex flex-col justify-center px-4">

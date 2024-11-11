@@ -5,18 +5,23 @@ import { populationFormat } from '@/lib/utils';
 import { useLocationStore } from '@/stores/useLocationStore';
 import { useQuery } from '@tanstack/react-query';
 import { FaPeopleGroup } from 'react-icons/fa6';
+import Loading from './Loading';
+import Error from './Error';
 
 export default function PopulationSection() {
   const { lat, lon } = useLocationStore();
 
   const {
     data: populationData,
-    // isLoading,
-    // error,
+    isLoading,
+    error,
   } = useQuery({
     queryKey: ['population', lat, lon],
     queryFn: () => getForecast(lat, lon),
   });
+
+  if (isLoading) return <Loading style="h-1/3 w-full" />;
+  if (error) return <Error error={error} style="h-1/3 w-full" />;
 
   return (
     <section className="h-1/3 w-full bg-neutral-200 rounded-lg flex flex-col justify-center p-4">

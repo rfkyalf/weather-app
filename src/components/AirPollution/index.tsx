@@ -5,6 +5,8 @@ import { getAirPollution } from '@/lib/actions';
 import { useLocationStore } from '@/stores/useLocationStore';
 import { useQuery } from '@tanstack/react-query';
 import { FaMaskFace } from 'react-icons/fa6';
+import Loading from '../Loading';
+import Error from '../Error';
 
 const AQI_CONFIG = {
   1: {
@@ -49,39 +51,25 @@ export default function AirPollutionSection() {
   } = useQuery({
     queryKey: ['airPollution', lat, lon],
     queryFn: () => getAirPollution(lat, lon),
-    enabled: Boolean(lat && lon),
   });
 
   const AQI = airPollutionData?.list[0]?.main.aqi;
   const aqiInfo = AQI ? AQI_CONFIG[AQI as keyof typeof AQI_CONFIG] : null;
 
   if (isLoading) {
-    return (
-      <section className="h-1/3 w-full bg-neutral-200 rounded-lg p-4 animate-pulse">
-        <div className="h-full flex items-center justify-center">
-          <p className="text-neutral-600">Loading air quality data...</p>
-        </div>
-      </section>
-    );
+    return <Loading style="h-1/3 w-full" />;
   }
 
-  if (error || !aqiInfo) {
-    return (
-      <section className="h-1/3 w-full bg-neutral-200 rounded-lg p-4">
-        <div className="h-full flex items-center justify-center">
-          <p className="text-red-600">Unable to load air quality data</p>
-        </div>
-      </section>
-    );
+  if (error) {
+    return <Error error={error} style="h-1/3 w-full" />;
   }
 
   return (
     <section className="h-1/3 w-full bg-neutral-200 rounded-lg p-4 flex flex-col justify-between">
-      <h3 className="text-base text-neutral-700 mb-1 flex items-center gap-x-4">
+      <h3 className="text-[1rem] text-neutral-700 mb-1 flex items-center gap-x-4">
         <FaMaskFace className="size-5" />
         <span>Air Pollution</span>
       </h3>
-
       <div className="relative w-full">
         <div
           className="w-full h-3 rounded-full"
@@ -92,17 +80,16 @@ export default function AirPollutionSection() {
         />
         <div
           className={`absolute size-3 rounded-full top-0 -translate-y-1/4 transition-all duration-300
-            ${aqiInfo.color} border-2 border-white`}
+            ${aqiInfo?.color} border-2 border-white`}
           style={{
-            left: `${aqiInfo.value}%`,
+            left: `${aqiInfo?.value}%`,
             transform: `translateX(${
-              aqiInfo.value === 100 ? '-100%' : '-50%'
+              aqiInfo?.value === 100 ? '-100%' : '-50%'
             })`,
           }}
         />
       </div>
-
-      <p className="text-sm text-neutral-600 mt-2">{aqiInfo.description}</p>
+      <p className="text-[0.9rem] text-neutral-600">{aqiInfo?.description}</p>
     </section>
   );
 }
