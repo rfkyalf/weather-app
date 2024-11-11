@@ -10,7 +10,7 @@ import TemperatureSection from '@/components/TemperatureSection';
 
 export default async function HomePage() {
   return (
-    <main className="bg-neutral-50 relative min-h-screen">
+    <main className="relative min-h-screen">
       <div className="w-[1200px] mx-auto mb-2">
         <Search />
         <div className="h-[320px] flex gap-x-2">
@@ -29,6 +29,10 @@ export default async function HomePage() {
             <PopularCitiesSection />
           </section>
         </div>
+        <footer className="w-full bg-neutral-200 rounded-lg text-[1rem] text-neutral-700 flex justify-between items-center mt-2 p-4">
+          <p>Created by Rifky Alfarez</p>
+          <p>Powered by OWM API & OSM APi</p>
+        </footer>
       </div>
     </main>
   );
