@@ -80,7 +80,7 @@ export default function DayForecastSection() {
           ) => (
             <div
               key={index}
-              className="w-full flex items-center justify-between border-b border-neutral-400 pb-5"
+              className="w-full flex items-center justify-between border-b border-neutral-300 pb-5"
             >
               <span className="text-[1rem] text-neutral-600">
                 {moment(dt_txt).format('ddd')}

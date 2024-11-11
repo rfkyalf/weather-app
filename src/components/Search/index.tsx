@@ -21,20 +21,18 @@ export default function Search() {
   });
 
   return (
-    <section>
-      <div className="my-2 relative">
-        <SearchBar setQuery={setQuery} />
-        <SearchSuggestList
-          LocationList={LocationList}
-          query={query}
-          isLoading={isLoading}
-          error={error}
-          onSelectLocation={(lat, lon) => {
-            setCoordinates(lat, lon);
-            setQuery('');
-          }}
-        />
-      </div>
+    <section className="relative w-[80%] h-full">
+      <SearchBar setQuery={setQuery} />
+      <SearchSuggestList
+        LocationList={LocationList}
+        query={query}
+        isLoading={isLoading}
+        error={error}
+        onSelectLocation={(lat, lon) => {
+          setCoordinates(lat, lon);
+          setQuery('');
+        }}
+      />
     </section>
   );
 }
