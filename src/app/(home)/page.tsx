@@ -29,7 +29,7 @@ export default async function HomePage() {
             <PopularCitiesSection />
           </section>
         </div>
-        <footer className="w-full bg-neutral-200 rounded-lg text-[1rem] text-neutral-700 flex justify-between items-center mt-2 p-4">
+        <footer className="w-full bg-neutral-200/50 border border-neutral-300 rounded-lg text-[1rem] text-neutral-700 flex justify-between items-center mt-2 p-4">
           <p>Created by Rifky Alfarez</p>
           <p>Powered by OWM API & OSM APi</p>
         </footer>

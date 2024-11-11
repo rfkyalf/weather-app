@@ -64,7 +64,7 @@ export default function DayForecastSection() {
   if (error) return <Error error={error} style="h-full w-[30%]" />;
 
   return (
-    <section className="h-full w-[30%] bg-neutral-200 rounded-lg flex flex-col justify-center px-4">
+    <section className="h-full w-[30%] bg-neutral-200/50 border border-neutral-300 rounded-lg flex flex-col justify-center px-4">
       <h2 className="text-[1.2rem] font-medium text-neutral-700">
         5-Day Forecast
       </h2>

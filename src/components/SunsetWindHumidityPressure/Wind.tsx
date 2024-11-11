@@ -7,7 +7,7 @@ export default function Wind({
   otherInfoWeatherList: { wind: { deg: number; speed: number } };
 }) {
   return (
-    <div className="h-full w-1/2 bg-neutral-200 rounded-lg flex flex-col gap-y-2 p-4">
+    <div className="h-full w-1/2 bg-neutral-200/50 border border-neutral-300 rounded-lg flex flex-col gap-y-2 p-4">
       <h3 className="text-[1rem] text-neutral-700 mb-1 flex items-center gap-x-2">
         <FaWind className="size-5" /> <span>Wind</span>
       </h3>

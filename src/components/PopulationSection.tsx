@@ -24,7 +24,7 @@ export default function PopulationSection() {
   if (error) return <Error error={error} style="h-1/3 w-full" />;
 
   return (
-    <section className="h-1/3 w-full bg-neutral-200 rounded-lg flex flex-col justify-center p-4">
+    <section className="h-1/3 w-full bg-neutral-200/50 border border-neutral-300 rounded-lg flex flex-col justify-center p-4">
       <div className="h-full flex flex-col justify-between">
         <div>
           <h3 className="text-[1rem] text-neutral-700 mb-1 flex items-center gap-x-2">

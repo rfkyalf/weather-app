@@ -22,7 +22,7 @@ export default function SearchSuggestList({
   return (
     <>
       {query === '' ? null : (
-        <div className="bg-neutral-200 mt-1 rounded-lg px-2 py-2 absolute z-[9999] w-full border border-neutral-400">
+        <div className="bg-neutral-200/50 backdrop-blur border border-neutral-300 mt-1 rounded-lg px-2 py-2 absolute z-[9999] w-full">
           <div className="flex flex-col gap-y-2">
             {isLoading ? (
               <span className="text-[1rem] text-neutral-700 px-2 py-1 rounded-md cursor-progress">

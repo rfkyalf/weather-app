@@ -65,7 +65,7 @@ export default function AirPollutionSection() {
   }
 
   return (
-    <section className="h-1/3 w-full bg-neutral-200 rounded-lg p-4 flex flex-col justify-between">
+    <section className="h-1/3 w-full bg-neutral-200/50 border border-neutral-300 rounded-lg p-4 flex flex-col justify-between">
       <h3 className="text-[1rem] text-neutral-700 mb-1 flex items-center gap-x-4">
         <FaMaskFace className="size-5" />
         <span>Air Pollution</span>
